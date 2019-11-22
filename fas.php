@@ -1,29 +1,19 @@
 <?php
-
-class MyDB extends SQLite3
-{
-    function __construct()
+    class MyDB extends SQLite3
     {
-        $this->open('index.db');
+        function __construct()
+        {
+            $this->open('index.db');
+        }
     }
-}
-
-$db = new MyDB();
-if(!$db){
-    echo $db->lastErrorMsg();
-}
-
-$results = $db->query('SELECT * FROM video_file limit 5');
-
 ?>
 
-
 <?php
-$clientip = $_GET['clientip'];
-$gatewayname = $_GET['gatewayname'];
-$redir = $_GET['redir'];
+    $clientip = $_GET['clientip'];
+    $gatewayname = $_GET['gatewayname'];
+    $redir = $_GET['redir'];
 
-$token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
+    $token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +54,13 @@ $token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
 
         <div style='margin-top:30px; margin-bottom:30px;'>
             <?php
-                // $json_string = file_get_contents('index.json');
-                // // 用参数true把JSON字符串强制转成PHP数组
-                // $data = json_decode($json_string, true);
-                // $videos = $data['video'];
+                $db = new MyDB();
+                if(!$db){
+                    echo $db->lastErrorMsg();
+                    exit(1);
+                }
+
+                $results = $db->query('SELECT * FROM video_file limit 5');
                 while($video = $results->fetchArray()) {
             ?>
                 <div style='margin-top:10px;background: beige; padding:10px 0;'>
