@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background:aliceblue;">
     <div style="position: absolute; top: 40%; left:50%; margin: -150px 0 0 -150px; width: 300px; height: 300px;">
         <button class='btn' style="margin-top:20px;" onclick="load()"><?php echo $msg;?></button>
     </div>

@@ -39,9 +39,14 @@
             border-color: #1890ff;
             border-radius: 4px;
         }
+        .btn-info {
+            color: #fff;
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
     </style>
 </head>
-<body>
+<body style="background:aliceblue;">
     <div style="position: absolute; top: 40%; left:50%; margin: -150px 0 0 -150px; width: 300px; height: 300px;">
         <h2><?php echo $gatewayname; ?></h2>
         <form method="GET" action="/nodog/auth.php">
@@ -60,11 +65,11 @@
                     exit(1);
                 }
 
-                $results = $db->query('SELECT * FROM video_file limit 5');
+                $results = $db->query('SELECT * FROM image_file limit 5');
                 while($video = $results->fetchArray()) {
             ?>
-                <div style='margin-top:10px;background: beige; padding:10px 0;'>
-                    <a href=''  style='text-decoration: none;'> <?php echo $video['filePath']; ?></a>
+                <div style='margin-top:10px;'>
+                    <button class='btn btn-info'> <?php echo $video['fileName'] . $video['fileExtension']; ?></button>
                 </div>
             <?php
                 }
