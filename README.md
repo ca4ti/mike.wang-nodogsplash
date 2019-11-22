@@ -41,3 +41,5 @@ option faspath '/nodog/fas.php'
 需要在 `/www/` 目录下面创建 `nodog` 目录，将 `fas.php`, `auth.php` 放在该目录下面。
 
 重启： `service nodogsplash restart`
+
+**注意:**  `fas.php` 中需要打开 `sqlite db` 文件, `line: 6`, 默认是当前路径下面的 `index.db`
