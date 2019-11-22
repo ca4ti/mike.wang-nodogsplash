@@ -1,6 +1,6 @@
 # Nodogsplash
 
-> https://nodogsplashdocs.readthedocs.io/en/stable/
+> <https://nodogsplashdocs.readthedocs.io/en/stable/>
 
 ## 安装依赖
 
@@ -18,6 +18,8 @@ Language -> PHP
 
 ## 修改配置
 
+### uhttpd
+
 `/etc/config/uhttpd`
 
 ```shell
@@ -27,8 +29,9 @@ list interpreter        ".php=/usr/bin/php-cgi"
 
 重启: `/etc/init.d/uhttpd restart`
 
-`/etc/config/nodogsplash`
+### nodogsplash
 
+`/etc/config/nodogsplash`
 
 ```shell
 option fasport '2080'
