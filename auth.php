@@ -34,9 +34,9 @@
             min-height: 20px;
             padding: 9px 14px;
             font-size: 20px;
-            background-color: #1890ff;
+            background-color: #4cae4c;
             color: #fff;
-            border-color: #1890ff;
+            border-color: #4cae4c;
             border-radius: 4px;
         }
     </style>
