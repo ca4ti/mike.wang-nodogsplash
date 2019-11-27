@@ -1,14 +1,6 @@
 <?php
-    class MyDB extends SQLite3
-    {
-        function __construct()
-        {
-            $this->open('index.db');
-        }
-    }
-?>
+    require_once "core.php";
 
-<?php
     $clientip = $_GET['clientip'];
     $gatewayname = $_GET['gatewayname'];
     $redir = $_GET['redir'];
@@ -59,7 +51,7 @@
 
         <div style='margin-top:30px; margin-bottom:30px;'>
             <?php
-                $db = new MyDB();
+                $db = new SQLite();
                 if(!$db){
                     echo $db->lastErrorMsg();
                     exit(1);

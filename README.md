@@ -43,3 +43,19 @@ option faspath '/nodog/fas.php'
 重启： `service nodogsplash restart`
 
 **注意:**  `fas.php` 中需要打开 `sqlite db` 文件, `line: 6`, 默认是当前路径下面的 `index.db`
+
+## API
+
+### 获取路由器信息
+
+`http://192.168.10.1/nodog/config.php`
+
+### 获取设备文件
+
+`http://192.168.10.1/nodog/content.php`
+
+支持参数：
+
+- `type`  文件类型  (app | music | image | raw | short_video | video)
+- `page` 当前数据页，默认 1
+- `limit` 每页条数， 默认 20
