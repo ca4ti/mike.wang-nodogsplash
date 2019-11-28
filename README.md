@@ -59,3 +59,21 @@ option faspath '/nodog/fas.php'
 - `type`  文件类型  (app | music | image | raw | short_video | video)
 - `page` 当前数据页，默认 1
 - `limit` 每页条数， 默认 20
+
+### 获取图片数量
+
+`http://192.168.10.1/nodog/image.php?type=count`
+
+### 获取图片列表
+
+`http://192.168.10.1/nodog/image.php`
+
+支持参数：
+
+- `folder` 获取某个文件夹下面的图片， 默认无
+- `page` 当前数据页，默认 1
+- `limit` 每页条数， 默认 20
+
+### 获取图片文件夹
+
+`http://192.168.10.1/nodog/image.php?type=folder`

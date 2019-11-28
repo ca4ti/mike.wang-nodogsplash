@@ -3,6 +3,7 @@
 require_once 'core.php';
 
 $type = $_GET['type'];
+$folder = $_GET['folder'];
 $page = $_GET['page'] ?? 1;
 $limit = $_GET['limit'] ?? 20;
 $offset = ($page - 1) * $limit;
@@ -16,11 +17,15 @@ if(!$db){
     exit(1);
 }
 
-
 $response = [];
 
-if (empty($type)) {
+if (empty($type) || $type === 'image') {
+    // 获取图片列表
     $stmt = $db->prepare('SELECT * FROM image_file limit :limit offset :offset');
+    if (!empty($folder)) {
+        $stmt = $db->prepare('SELECT * FROM image_file where folderName=:folder limit :limit offset :offset');
+        $stmt->bindValue(':folder', $folder, SQLITE3_TEXT);
+    }
     $stmt->bindValue(':offset', $offset, SQLITE3_INTEGER);
     $stmt->bindValue(':limit', $limit, SQLITE3_INTEGER);
 } else if ($type === 'folder') {
