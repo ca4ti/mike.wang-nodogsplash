@@ -50,9 +50,22 @@ option faspath '/nodog/fas.php'
 
 `http://192.168.10.1/nodog/config.php`
 
+```json
+{
+    "hostname": "OpenWrt",
+    "system": " MediaTek MT7621 ver",
+    "machine": " Newifi-D2",
+    "cpu": " MIPS 1004Kc V2.15",
+    "revison": "r11473-5dc535419f",
+    "target": "ramips/mt7621",
+    "arch": "mipsel_24kc",
+    "description": "OpenWrt SNAPSHOT r11473-5dc535419f"
+}
+```
+
 ### 获取设备文件
 
-`http://192.168.10.1/nodog/content.php`
+`http://192.168.10.1/nodog/content.php?type=video`
 
 支持参数：
 
@@ -60,13 +73,54 @@ option faspath '/nodog/fas.php'
 - `page` 当前数据页，默认 1
 - `limit` 每页条数， 默认 20
 
+```json
+[
+    {
+        "filePath": "AA/Video/1573530285762084.mp4",
+        "fileName": "1573530285762084",
+        "fileExtension": ".mp4",
+        "fileSize": 565140,
+        "fileBirthTime": "1573530285798",
+        "fileCreateTime": "1574229797821",
+        "duration": 138327,
+        "width": 540,
+        "height": 960,
+        "thumbnail": "AA/Video/1573530285762084.png"
+    }
+]
+```
+
 ### 获取图片数量
 
 `http://192.168.10.1/nodog/image.php?type=count`
 
+```json
+{
+    "total": 3
+}
+```
+
 ### 获取图片列表
 
 `http://192.168.10.1/nodog/image.php`
+
+```json
+[
+    {
+        "filePath": "Default/Image/AA/WechatIMG17.jpeg",
+        "fileName": "WechatIMG17",
+        "fileExtension": ".jpeg",
+        "fileSize": 151969,
+        "fileBirthTime": "1564478458889",
+        "fileCreateTime": "1574764616456",
+        "folderPath": "Default/Image/AA",
+        "folderName": "AA",
+        "width": 1440,
+        "height": 1080,
+        "mime": "image/jpeg"
+    }
+]
+```
 
 支持参数：
 
@@ -77,3 +131,16 @@ option faspath '/nodog/fas.php'
 ### 获取图片文件夹
 
 `http://192.168.10.1/nodog/image.php?type=folder`
+
+```json
+[
+    {
+        "folderName": "AA",
+        "total": 1
+    },
+    {
+        "folderName": "Image",
+        "total": 2
+    }
+]
+```
