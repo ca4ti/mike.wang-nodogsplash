@@ -144,3 +144,25 @@ option faspath '/nodog/fas.php'
     }
 ]
 ```
+
+### 获取 WIFI 列表
+
+`http://192.168.10.1/nodog/wifi.php`
+
+支持参数：
+
+- `page` 当前数据页，默认 1
+- `limit` 每页条数， 默认 20
+
+```json
+[
+    {
+        "icon": "AA",
+        "name": "热点名称",
+        "lat": "33.49800109863281",
+        "lon": "-86.8010025024414",
+        "beginAt": "9:30",
+        "endAt": "21:30"
+    }
+]
+```
