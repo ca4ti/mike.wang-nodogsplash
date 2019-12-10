@@ -40,7 +40,7 @@
 </head>
 <body style="background:aliceblue;">
     <div style="position: absolute; top: 40%; left:50%; margin: -150px 0 0 -150px; width: 300px; height: 300px;">
-        <h2><?php echo $gatewayname; ?></h2>
+        <h2>FastFree<?php //echo $gatewayname; ?></h2>
         <form method="GET" action="/nodog/auth.php">
             <input type="hidden" name="clientip" value="<?php echo $clientip; ?>"/>
             <input type="hidden" name="tok" value="<?php echo $token; ?>"/>
@@ -51,6 +51,8 @@
 
         <div style='margin-top:30px; margin-bottom:30px;'>
             <?php
+                exit(1);
+
                 $db = new SQLite();
                 if(!$db){
                     echo $db->lastErrorMsg();
