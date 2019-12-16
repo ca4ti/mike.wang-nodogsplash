@@ -5,8 +5,8 @@
     $token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
 
     // 301 Moved Permanently
-    // header("Location: ./auth.php?".$_SERVER['QUERY_STRING']."&tok=".$token, TRUE, 301);
-    // exit;
+    header("Location: ./auth.php?".$_SERVER['QUERY_STRING']."&tok=".$token, TRUE, 301);
+    exit;
 
     require_once "core.php";
 
