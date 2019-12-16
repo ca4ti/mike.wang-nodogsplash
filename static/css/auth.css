@@ -8,7 +8,8 @@
 
 body,button,div,dl,form,h1,h2,h3,html,input,ol,p,ul {
     margin: 0;
-    padding: 0
+    padding: 0;
+    border: 0;
 }
 
 em {
@@ -54,7 +55,7 @@ input {
     width: 100%;
     color: #616161;
     text-align: center;
-    padding: 120px 0 60px;
+    padding: 100px 0 60px;
 }
 
 .content-header {

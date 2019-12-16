@@ -1,74 +1,47 @@
 <?php
-    require_once "core.php";
-
     $clientip = $_GET['clientip'];
     $gatewayname = $_GET['gatewayname'];
     $redir = $_GET['redir'];
-
     $token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
+
+    // 301 Moved Permanently
+    // header("Location: ./auth.php?".$_SERVER['QUERY_STRING']."&tok=".$token, TRUE, 301);
+    // exit;
+
+    require_once "core.php";
+
+
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BZY Wifi</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <script>
-        function load() {
-			location.href='weixin://';
-        }
-    </script>
+<html>
+    <head>
+        <meta charset=UTF-8>
+        <title>FastFree</title>
+        <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0">
+        <link rel="shortcut icon" href=./favicon.ico>
+        <link rel=stylesheet type=text/css href=./static/css/auth.css>
+    </head>
+    <body>
+        <div id=main class=main>
+            <div class=content-header>
+                <img src = "./static/img/icon.png">
+                <span class=''>FastFree</span>
+            </div>
 
-    <style>
-        .btn {
-            width: 300px;
-            min-height: 20px;
-            padding: 9px 14px;
-            font-size: 20px;
-            background-color: #1890ff;
-            color: #fff;
-            border-color: #1890ff;
-            border-radius: 4px;
-        }
-        .btn-info {
-            color: #fff;
-            background-color: #4cae4c;
-            border-color: #4cae4c;
-        }
-    </style>
-</head>
-<body style="background:aliceblue;">
-    <div style="position: absolute; top: 40%; left:50%; margin: -150px 0 0 -150px; width: 300px; height: 300px;">
-        <h2>FastFree<?php //echo $gatewayname; ?></h2>
-        <form method="GET" action="/nodog/auth.php">
-            <input type="hidden" name="clientip" value="<?php echo $clientip; ?>"/>
-            <input type="hidden" name="tok" value="<?php echo $token; ?>"/>
+            <div class=content-body>
+                <div class=btn-container>
+                    <form method="GET" action="/nodog/auth.php">
+                        <input type="hidden" name="clientip" value="<?php echo $clientip; ?>"/>
+                        <input type="hidden" name="tok" value="<?php echo $token; ?>"/>
 
-            <button class='btn' type="submit">login</button>
-		</form>
-        <button class='btn' style="margin-top:20px;" onclick="load()">download</button>
-
-        <div style='margin-top:30px; margin-bottom:30px;'>
-            <?php
-                exit(1);
-
-                $db = new SQLite();
-                if(!$db){
-                    echo $db->lastErrorMsg();
-                    exit(1);
-                }
-
-                $results = $db->query('SELECT * FROM image_file limit 5');
-                while($video = $results->fetchArray()) {
-            ?>
-                <div style='margin-top:10px;'>
-                    <button class='btn btn-info'> <?php echo $video['fileName'] . $video['fileExtension']; ?></button>
+                        <button class='button Android margin-t' type="submit">
+                            <span>即刻上网</span>
+                        </button>
+                    </form>
                 </div>
-            <?php
-                }
-            ?>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

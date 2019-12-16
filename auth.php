@@ -1,6 +1,6 @@
 <?php
     $clientip = $_GET['clientip'];
-    $token = $_GET['tok'];
+    // $token = $_GET['tok'];
 
     $state = exec("ndsctl json $clientip | grep state | cut -c 10-");
     $state = substr($state, 0,-2);
