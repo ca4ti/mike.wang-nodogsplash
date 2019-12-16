@@ -14,6 +14,7 @@ Language -> PHP
                 -> php7-cli
                 -> php7-mod-mbstring
                 -> php7-mod-sqlite3
+                -> php7-mod-json
 ```
 
 ## 修改配置
