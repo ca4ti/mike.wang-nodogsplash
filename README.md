@@ -37,9 +37,16 @@ list interpreter        ".php=/usr/bin/php-cgi"
 ```shell
 option fasport '2080'
 option faspath '/nodog/fas.php'
+
+option binauth '/www/nodog/binauth_log.sh'
 ```
 
-需要在 `/www/` 目录下面创建 `nodog` 目录，将 `fas.php`, `auth.php` 放在该目录下面。
+需要在 `/www/` 目录下面创建 `nodog` 目录，将 `fas.php`, `auth.php`, `binauth_log.sh` 放在该目录下面,
+并保证 `binauth_log.sh` 具有可执行权限,
+
+```shell
+chmod u+x /www/nodog/binauth_log.sh
+```
 
 重启： `service nodogsplash restart`
 

@@ -3,15 +3,9 @@
     $gatewayname = $_GET['gatewayname'];
     $redir = $_GET['redir'];
     $token = exec("ndsctl json $clientip | grep token | cut -c 10- | cut -c -8");
-
     // 301 Moved Permanently
-    header("Location: ./auth.php?".$_SERVER['QUERY_STRING']."&tok=".$token, TRUE, 301);
-    exit;
-
-    require_once "core.php";
-
-
-
+    // header("Location: ${$authUrl}", TRUE, 301);
+    // exit;
 ?>
 
 <!DOCTYPE html>
@@ -32,16 +26,25 @@
 
             <div class=content-body>
                 <div class=btn-container>
-                    <form method="GET" action="/nodog/auth.php">
+                    <form method="GET" action="http://192.168.10.1:2050/nodogsplash_auth/" id = "authClient">
                         <input type="hidden" name="clientip" value="<?php echo $clientip; ?>"/>
                         <input type="hidden" name="tok" value="<?php echo $token; ?>"/>
+                        <input type="hidden" name="redir" value="http://192.168.10.1:2080/nodog/auth.php"/>
 
                         <button class='button Android margin-t' type="submit">
-                            <span>即刻上网</span>
+                            <span>正在联网...</span>
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </body>
+
+    <<script>
+        var form = document.getElementById('authClient');
+
+        form.submit();
+    </script>
+
+
 </html>

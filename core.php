@@ -8,7 +8,7 @@
 
         function __destruct()
         {
-            echo $this->close();
+             $this->close();
         }
     }
 ?>
