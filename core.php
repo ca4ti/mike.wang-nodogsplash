@@ -3,12 +3,12 @@
     {
         function __construct()
         {
-            $this->open('index.db');
+            $this->open('/home/fastfree/index.db');
         }
 
         function __destruct()
         {
-             $this->close();
+            $this->close();
         }
     }
 ?>

@@ -30,7 +30,21 @@ if (empty($type) || $type === 'image') {
     $stmt->bindValue(':limit', $limit, SQLITE3_INTEGER);
 } else if ($type === 'folder') {
     // 计算文件夹
-    $stmt = $db->prepare("SELECT folderName, count(*) total FROM image_file group by folderName");
+    $stmt = $db->prepare("SELECT folderName, folderPath FROM image_file group by folderPath ORDER BY folderName");
+    $result = $stmt->execute();
+    while($folder = $result->fetchArray(SQLITE3_ASSOC)) {
+        $stmt1 = $db->prepare("SELECT * FROM image_file WHERE folderPath=:folderPath");
+        $stmt1->bindValue(':folderPath', $folder["folderPath"], SQLITE3_TEXT);
+        $result1 = $stmt1->execute();
+        $folderImages = [];
+        while($folderImage = $result1->fetchArray(SQLITE3_ASSOC)) {
+            $folderImages[] = $folderImage;
+        }
+
+        $folder["items"] = $folderImages;
+        $folder["imageCount"] = count($folderImages);
+        $response[] = $folder;
+    }
 } else if ($type === 'count') {
     $stmt = $db->prepare("SELECT count(*) total FROM image_file");
 } else {
@@ -38,10 +52,12 @@ if (empty($type) || $type === 'image') {
     exit(0);
 }
 
-$result = $stmt->execute();
+if (count($response) == 0) {
+    $result = $stmt->execute();
 
-while($image = $result->fetchArray(SQLITE3_ASSOC)) {
-    $response[] = $image;
+    while($image = $result->fetchArray(SQLITE3_ASSOC)) {
+        $response[] = $image;
+    }
 }
 
 header("Content-Type:application/json");
